@@ -1,6 +1,7 @@
+import com.vanniktech.maven.publish.SonatypeHost
+
 plugins {
     kotlin("jvm") version "2.1.10"
-    id("com.gradleup.shadow") version "8.3.0"
     id("xyz.jpenilla.run-paper") version "2.3.1"
     id("com.vanniktech.maven.publish") version "0.31.0"
 }
@@ -32,9 +33,35 @@ tasks {
 mavenPublishing {
     coordinates(
         groupId = "io.github.haburashi76",
-        artifactId = ""
-
+        artifactId = "publish-test",
+        version = "0.0.1"
     )
+    pom {
+        name.set("publish-test")
+        description.set("test")
+        inceptionYear.set("2025")
+        url.set("https://github.com/haburashi76/publishTest")
+        licenses {
+            license {
+                name.set("GNU General Public License version 3")
+                url.set("https://opensource.org/licenses/GPL-3.0")
+            }
+        }
+        developers {
+            developer {
+                id.set("haburashi76")
+                name.set("Haburashi76")
+                email.set("haburashi76@gmail.com")
+            }
+        }
+        scm {
+            connection.set("scm:git:git://github.com/haburashi76/publishTest.git")
+            developerConnection.set("scm:git:ssh://github.com/username/publishTest.git")
+            url.set("https://github.com/haburashi76/publishTest.git")
+        }
+    }
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    //signAllPublications()
 }
 
 val targetJavaVersion = 21
