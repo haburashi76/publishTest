@@ -1,0 +1,4 @@
+name: publishTest
+version: '1.0'
+main: org.ToothBrush.publishTest.PublishTest
+api-version: '1.21'
